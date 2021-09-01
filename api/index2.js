@@ -4,6 +4,8 @@ const fetch = require('node-fetch')
 const cheerio = require('cheerio')
 var fs = require('fs')
 
+const PORT = process.env.PORT || 8080;
+
 function padLeadingZeros(num, size) {
     var s = num + "";
     while (s.length < size) s = "0" + s;
