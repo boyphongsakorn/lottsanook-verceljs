@@ -4,8 +4,6 @@ const fetch = require('node-fetch')
 const cheerio = require('cheerio')
 var fs = require('fs')
 
-const port = process.env.PORT || 8080;
-
 function padLeadingZeros(num, size) {
     var s = num + "";
     while (s.length < size) s = "0" + s;
@@ -23,13 +21,13 @@ router.get("/", async (req, res) => {
     }
     if (req.query.date.substring(4, 8) == new Date().getFullYear() + 543) {
         if (req.query.from !== undefined) {
-            fetch('http://localhost:' + port + '/index2?date=' + req.query.date + '&from')
+            fetch('https://lottsanook-verceljs.vercel.app/api/index2?date=' + req.query.date + '&from')
                 .then(res => res.json())
                 .then((body) => {
                     res.send(body)
                 })
         } else {
-            fetch('http://localhost:' + port + '/index2?date=' + req.query.date)
+            fetch('https://lottsanook-verceljs.vercel.app/api/index2?date=' + req.query.date)
                 .then(res => res.json())
                 .then((body) => {
                     res.send(body)
