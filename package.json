@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/hatuanem199801/express-vercel#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "cheerio": "^1.0.0-rc.9",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
   }
 }
