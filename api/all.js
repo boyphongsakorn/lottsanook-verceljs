@@ -482,7 +482,7 @@ router.get('/reto', async (req, res) => {
 })
 
 router.get('/god', async (req, res) => {
-    let year = 2533;
+    /*let year = 2533;
     let preyearlist = [];
     let preyearsuperlist = [];
     let yearlist = [];
@@ -576,7 +576,12 @@ router.get('/god', async (req, res) => {
     fs.writeFile('/tmp/cache.txt', JSON.stringify(yearlist), function (err) {
         if (err) throw err;
         res.send(yearlist)
-    });
+    });*/
+    fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/god')
+    .then(res => res.json())
+    .then((body) => {
+        res.send(JSON.stringify(body))
+    })
 })
 
 router.get('/gdpy', async (req, res) => {
