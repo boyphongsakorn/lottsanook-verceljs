@@ -580,7 +580,7 @@ router.get('/god', async (req, res) => {
     fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/god')
     .then(res => res.json())
     .then((body) => {
-        res.send(JSON.stringify(body))
+        res.send(body)
     })
 })
 
