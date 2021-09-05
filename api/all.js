@@ -11,22 +11,22 @@ function padLeadingZeros(num, size) {
 }
 
 router.get('/', (req, res) => {
-    if(!req.query.date){
-        req.query.date=padLeadingZeros(new Date().getDate(), 2) + '' + padLeadingZeros((new Date().getMonth() + 1), 2) + '' + (new Date().getFullYear() + 543)
+    if (!req.query.date) {
+        req.query.date = padLeadingZeros(new Date().getDate(), 2) + '' + padLeadingZeros((new Date().getMonth() + 1), 2) + '' + (new Date().getFullYear() + 543)
     }
     if (req.query.date.substring(4, 8) == new Date().getFullYear() + 543) {
-        if(req.query.from !== undefined){
+        if (req.query.from !== undefined) {
             fetch('https://lottsanook-verceljs.vercel.app/api/index2?date=' + req.query.date + '&from')
-            .then(res => res.json())
-            .then((body) => {
-                res.send(body)
-            })
-        }else{
+                .then(res => res.json())
+                .then((body) => {
+                    res.send(body)
+                })
+        } else {
             fetch('https://lottsanook-verceljs.vercel.app/api/index2?date=' + req.query.date)
-            .then(res => res.json())
-            .then((body) => {
-                res.send(body)
-            })
+                .then(res => res.json())
+                .then((body) => {
+                    res.send(body)
+                })
         }
     } else {
         let data = ""
@@ -65,7 +65,7 @@ router.get('/', (req, res) => {
             }
             res.send(data);
         } else {
-            fetch('https://www.myhora.com/%E0%B8%AB%E0%B8%A7%E0%B8%A2/%E0%B8%87%E0%B8%A7%E0%B8%94-' + req.query.date.substring(0, 2) + '-' + encodeURI(monthtext) + '-' + req.query.date.substring(4, 8) + '.aspx',{redirect: 'error'})
+            fetch('https://www.myhora.com/%E0%B8%AB%E0%B8%A7%E0%B8%A2/%E0%B8%87%E0%B8%A7%E0%B8%94-' + req.query.date.substring(0, 2) + '-' + encodeURI(monthtext) + '-' + req.query.date.substring(4, 8) + '.aspx', { redirect: 'error' })
                 .then(res => res.text())
                 .then((body) => {
                     data = [["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0], ["\u0e40\u0e25\u0e02\u0e2b\u0e19\u0e49\u0e323\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e223\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e222\u0e15\u0e31\u0e27", 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e02\u0e49\u0e32\u0e07\u0e40\u0e04\u0e35\u0e22\u0e07\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e482", 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e483", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e484", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e485", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
@@ -78,7 +78,7 @@ router.get('/', (req, res) => {
                             //console.log(element.firstChild.data)
                             numberpush.push(element.firstChild.data)
                         } catch (error) {
-                            
+
                         }
                     });
 
@@ -206,22 +206,22 @@ router.get('/', (req, res) => {
 
                     data[0][1] = numberpush[0]
                     numberpush.shift()
-                    if(numberpush[0].split(" ").length > 2){
+                    if (numberpush[0].split(" ").length > 2) {
                         threeend = numberpush[0].split(" ")
                         data[2][1] = threeend[0].replace(/\xc2\xa0/, '');
                         data[2][2] = threeend[1].replace(/\xc2\xa0/, '');
                         data[2][3] = threeend[2].replace(/\xc2\xa0/, '');
                         data[2][4] = threeend[3].replace(/\xc2\xa0/, '');
-                    }else{
+                    } else {
                         threefirst = numberpush[0].split(" ")
                         data[1][1] = threefirst[0].replace(/\xc2\xa0/, '');
                         data[1][2] = threefirst[1].replace(/\xc2\xa0/, '');
                     }
                     numberpush.shift()
-                    if(numberpush[0].length == 2){
+                    if (numberpush[0].length == 2) {
                         data[3][1] = numberpush[0]
                         numberpush.shift()
-                    }else{
+                    } else {
                         threeend = numberpush[0].split(" ")
                         data[2][1] = threeend[0].replace(/\xc2\xa0/, '');
                         data[2][2] = threeend[1].replace(/\xc2\xa0/, '');
@@ -237,7 +237,7 @@ router.get('/', (req, res) => {
                     let maxwave = 5;
 
                     for (const type of numberpush) {
-                        if(wave >= 5){
+                        if (wave >= 5) {
                             if (minwave < maxwave) {
                                 minwave++;
                                 data[wave][minwave] = type
@@ -326,6 +326,10 @@ router.get('/', (req, res) => {
                         }
                         res.send(data)
                     }
+                }).catch(error => {
+                    //console.log(error);
+                    data = [["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0], ["\u0e40\u0e25\u0e02\u0e2b\u0e19\u0e49\u0e323\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e223\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e222\u0e15\u0e31\u0e27", 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e02\u0e49\u0e32\u0e07\u0e40\u0e04\u0e35\u0e22\u0e07\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e482", 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e483", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e484", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e485", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+                    res.send(data)
                 });
         }
     }
@@ -676,34 +680,34 @@ router.get('/checklottery', async (req, res) => {
 router.get('/lastlot', async (req, res) => {
     let lastdate
     let viewer
-    await fetch('https://lottsanook-verceljs.vercel.app/api/gdpy?year='+(new Date().getFullYear()+543))
-    .then(res => res.json())
-    .then((body) => {
-        lastdate = body[body.length-1]
-    })
-    await fetch('https://lottsanook-verceljs.vercel.app/api/?date='+lastdate)
-    .then(res => res.json())
-    .then((body) => {
-        if(req.query.info !== undefined){
-            viewer = {
-                info: {
-                    date: lastdate
-                },
-                win: body[0][1],
-                threefirst: body[1][1]+','+body[1][2],
-                threeend: body[2][1]+','+body[2][2],
-                twoend: body[3][1]
+    await fetch('https://lottsanook-verceljs.vercel.app/api/gdpy?year=' + (new Date().getFullYear() + 543))
+        .then(res => res.json())
+        .then((body) => {
+            lastdate = body[body.length - 1]
+        })
+    await fetch('https://lottsanook-verceljs.vercel.app/api/?date=' + lastdate)
+        .then(res => res.json())
+        .then((body) => {
+            if (req.query.info !== undefined) {
+                viewer = {
+                    info: {
+                        date: lastdate
+                    },
+                    win: body[0][1],
+                    threefirst: body[1][1] + ',' + body[1][2],
+                    threeend: body[2][1] + ',' + body[2][2],
+                    twoend: body[3][1]
+                }
+            } else {
+                viewer = {
+                    win: body[0][1],
+                    threefirst: body[1][1] + ',' + body[1][2],
+                    threeend: body[2][1] + ',' + body[2][2],
+                    twoend: body[3][1]
+                }
             }
-        }else{
-            viewer = {
-                win: body[0][1],
-                threefirst: body[1][1]+','+body[1][2],
-                threeend: body[2][1]+','+body[2][2],
-                twoend: body[3][1]
-            }
-        }
-        res.send(viewer)
-    })
+            res.send(viewer)
+        })
 })
 
 router.get('/getchit', async (req, res) => {
