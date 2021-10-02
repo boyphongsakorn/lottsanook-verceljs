@@ -808,8 +808,7 @@ router.get('/finddol', async (req, res) => {
 
         reqtwo.end();
         
-        setTimeout(async function () {
-            await fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/tmp/' + req.query.search.toString())
+        await fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/tmp/' + req.query.search.toString())
             .then(res => res.json())
             .then((body) => {
                 res.send(body)
@@ -817,7 +816,6 @@ router.get('/finddol', async (req, res) => {
                 res.send(allwin)
                 console.log(err)
             });
-        }, 40000)
     } else {
         fetch('https://astro.meemodel.com/%E0%B8%A7%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%B0%E0%B8%AB%E0%B9%8C%E0%B9%80%E0%B8%A5%E0%B8%82%E0%B8%AB%E0%B8%A7%E0%B8%A2/' + req.query.search, { redirect: 'error' })
             .then(res => res.text())
