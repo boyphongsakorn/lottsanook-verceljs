@@ -773,7 +773,7 @@ router.get('/finddol', async (req, res) => {
           'path': '/repos/boyphongsakorn/testrepo/actions/workflows/blank.yml/dispatches',
           'headers': {
             'Accept': 'application/vnd.github.v3+json',
-            'Authorization': 'token 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',
+            'Authorization': 'token '+process.env.gtoken,
             'Content-Type': 'application/json',
             'User-Agent': 'PostmanRuntime/7.28.4'
           },
