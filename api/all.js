@@ -765,7 +765,7 @@ router.get('/finddol', async (req, res) => {
                 })
         }
         res.send(allwin)*/
-        var myHeaders = new Headers();
+        var myHeaders = new fetch.Headers();
         myHeaders.append("Accept", "application/vnd.github.v3+json");
         myHeaders.append("Authorization", "token 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");
         myHeaders.append("Content-Type", "application/json");
