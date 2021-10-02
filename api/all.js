@@ -799,7 +799,7 @@ router.get('/finddol', async (req, res) => {
 
         var postData = JSON.stringify({
           "inputs": {
-            "number": "578171"
+            "number": req.query.search.toString()
           },
           "ref": "refs/heads/main"
         });
