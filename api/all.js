@@ -789,7 +789,7 @@ router.get('/finddol', async (req, res) => {
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
         
-        setTimeout(function () {
+        setTimeout(async function () {
             await fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/tmp/' + req.query.search.toString())
             .then(res => res.json())
             .then((body) => {
