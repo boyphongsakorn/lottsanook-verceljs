@@ -743,71 +743,6 @@ router.get('/finddol', async (req, res) => {
     let channels
     let allwin = []
     if (req.query.search.length > 3) {
-        /*await fetch('https://lottsanook-verceljs.vercel.app/api/god')
-            .then(res => res.json())
-            .then((body) => {
-                channels = body.splice(408)
-                console.log(channels)
-            })
-        for (const val of channels) {
-            console.log(val)
-            await fetch('https://lottsanook-verceljs.vercel.app/api/?date=' + val + '&from')
-                .then(res => res.json())
-                .then((body) => {
-                    for (let index = 0; index < body.length; index++) {
-                        const element = body[index];
-                        if (element.includes(req.query.search.toString())) {
-                            allwin.push(body[0][0])
-                            console.log('https://lottsanook-verceljs.vercel.app/api/?date=' + val + '&from')
-                        }
-                    }
-
-                })
-        }
-        res.send(allwin)*/
-        var https = require('follow-redirects').https;
-
-        var options = {
-          'method': 'POST',
-          'hostname': 'api.github.com',
-          'path': '/repos/boyphongsakorn/testrepo/actions/workflows/blank.yml/dispatches',
-          'headers': {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': 'token '+process.env.gtoken,
-            'Content-Type': 'application/json',
-            'User-Agent': 'PostmanRuntime/7.28.4'
-          },
-          'maxRedirects': 20
-        };
-
-        var reqtwo = https.request(options, function (res) {
-          var chunks = [];
-
-          res.on("data", function (chunk) {
-            chunks.push(chunk);
-          });
-
-          res.on("end", function (chunk) {
-            var body = Buffer.concat(chunks);
-            console.log(body.toString());
-          });
-
-          res.on("error", function (error) {
-            console.error(error);
-          });
-        });
-
-        var postData = JSON.stringify({
-          "inputs": {
-            "number": req.query.search.toString()
-          },
-          "ref": "refs/heads/main"
-        });
-
-        reqtwo.write(postData);
-
-        reqtwo.end();
-        
         await fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/tmp/' + req.query.search.toString())
             .then(res => res.json())
             .then((body) => {
@@ -815,6 +750,48 @@ router.get('/finddol', async (req, res) => {
             }).catch((err) => {
                 res.send(allwin)
                 console.log(err)
+                var https = require('follow-redirects').https;
+
+                var options = {
+                    'method': 'POST',
+                    'hostname': 'api.github.com',
+                    'path': '/repos/boyphongsakorn/testrepo/actions/workflows/blank.yml/dispatches',
+                    'headers': {
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Authorization': 'token ' + process.env.gtoken,
+                        'Content-Type': 'application/json',
+                        'User-Agent': 'PostmanRuntime/7.28.4'
+                    },
+                    'maxRedirects': 20
+                };
+
+                var reqtwo = https.request(options, function (res) {
+                    var chunks = [];
+
+                    res.on("data", function (chunk) {
+                        chunks.push(chunk);
+                    });
+
+                    res.on("end", function (chunk) {
+                        var body = Buffer.concat(chunks);
+                        console.log(body.toString());
+                    });
+
+                    res.on("error", function (error) {
+                        console.error(error);
+                    });
+                });
+
+                var postData = JSON.stringify({
+                    "inputs": {
+                        "number": req.query.search.toString()
+                    },
+                    "ref": "refs/heads/main"
+                });
+
+                reqtwo.write(postData);
+
+                reqtwo.end();
             });
     } else {
         fetch('https://astro.meemodel.com/%E0%B8%A7%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B2%E0%B8%B0%E0%B8%AB%E0%B9%8C%E0%B9%80%E0%B8%A5%E0%B8%82%E0%B8%AB%E0%B8%A7%E0%B8%A2/' + req.query.search, { redirect: 'error' })
