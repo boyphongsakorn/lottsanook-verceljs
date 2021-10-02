@@ -765,29 +765,47 @@ router.get('/finddol', async (req, res) => {
                 })
         }
         res.send(allwin)*/
-        var myHeaders = new fetch.Headers();
-        myHeaders.append("Accept", "application/vnd.github.v3+json");
-        myHeaders.append("Authorization", "token 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");
-        myHeaders.append("Content-Type", "application/json");
+        var https = require('follow-redirects').https;
 
-        var raw = JSON.stringify({
+        var options = {
+          'method': 'POST',
+          'hostname': 'api.github.com',
+          'path': '/repos/boyphongsakorn/testrepo/actions/workflows/blank.yml/dispatches',
+          'headers': {
+            'Accept': 'application/vnd.github.v3+json',
+            'Authorization': 'token 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',
+            'Content-Type': 'application/json'
+          },
+          'maxRedirects': 20
+        };
+
+        var reqtwo = https.request(options, function (res) {
+          var chunks = [];
+
+          res.on("data", function (chunk) {
+            chunks.push(chunk);
+          });
+
+          res.on("end", function (chunk) {
+            var body = Buffer.concat(chunks);
+            console.log(body.toString());
+          });
+
+          res.on("error", function (error) {
+            console.error(error);
+          });
+        });
+
+        var postData = JSON.stringify({
           "inputs": {
-            "number": req.query.search.toString()
+            "number": "578171"
           },
           "ref": "refs/heads/main"
         });
 
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow'
-        };
+        reqtwo.write(postData);
 
-        await fetch("https://api.github.com/repos/boyphongsakorn/testrepo/actions/workflows/blank.yml/dispatches", requestOptions)
-          .then(response => response.text())
-          .then(result => console.log(result))
-          .catch(error => console.log('error', error));
+        reqtwo.end();
         
         setTimeout(async function () {
             await fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/tmp/' + req.query.search.toString())
