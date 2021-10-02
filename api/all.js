@@ -774,7 +774,8 @@ router.get('/finddol', async (req, res) => {
           'headers': {
             'Accept': 'application/vnd.github.v3+json',
             'Authorization': 'token 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',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'User-Agent': 'PostmanRuntime/7.28.4'
           },
           'maxRedirects': 20
         };
