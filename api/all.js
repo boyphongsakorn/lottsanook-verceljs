@@ -584,11 +584,25 @@ router.get('/god', async (req, res) => {
         if (err) throw err;
         res.send(yearlist)
     });*/
-    fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/god')
+    if(req.query.format == "thtext"){
+        fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/godthtext')
         .then(res => res.json())
         .then((body) => {
             res.send(body)
         })
+    }else if(req.query.format == "combothtext"){
+        fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/godcombothtext')
+        .then(res => res.json())
+        .then((body) => {
+            res.send(body)
+        })
+    }else{
+        fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/main/god')
+        .then(res => res.json())
+        .then((body) => {
+            res.send(body)
+        })
+    }
 })
 
 router.get('/gdpy', async (req, res) => {
