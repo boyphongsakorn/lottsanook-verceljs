@@ -336,6 +336,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/index2', async (req, res) => {
+    if (!req.query.date) {
+        req.query.date = padLeadingZeros(new Date().getDate(), 2) + '' + padLeadingZeros((new Date().getMonth() + 1), 2) + '' + (new Date().getFullYear() + 543)
+    }
     try {
         if (req.query.fresh !== undefined) {
             fs.unlinkSync('/tmp/' + req.query.date + '.txt');
