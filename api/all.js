@@ -25,6 +25,21 @@ router.get('/', (req, res) => {
             year: parseInt(req.query.date.substr(4, 4)) - 543
         });
     }
+    if (req.query.date.substring(4, 8) == new Date().getFullYear() + 543) {
+        if (req.query.from !== undefined) {
+            fetch('https://lottsanook-verceljs.vercel.app/api/index3?date=' + req.query.date + '&from')
+                .then(res => res.json())
+                .then((body) => {
+                    res.send(body)
+                })
+        } else {
+            fetch('https://lottsanook-verceljs.vercel.app/api/index3?date=' + req.query.date)
+                .then(res => res.json())
+                .then((body) => {
+                    res.send(body)
+                })
+        }
+    } else {
     var requestOptions = {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -120,6 +135,7 @@ router.get('/', (req, res) => {
                     })
             }
         });
+    }
 });
 
 router.get('/index2', (req, res) => {
