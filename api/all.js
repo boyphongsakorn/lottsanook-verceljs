@@ -121,6 +121,7 @@ router.get('/', (req, res) => {
 
                         data[0][0] = req.query.date.substring(0, 2) + monthtext + req.query.date.substring(4, 8)
                     }
+                    res.setHeader('origin-server', 'vercel');
                     res.setHeader('Content-Type', 'application/json');
                     res.send(data)
                 } else {
