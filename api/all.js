@@ -121,7 +121,7 @@ router.get('/', (req, res) => {
 
                         data[0][0] = req.query.date.substring(0, 2) + monthtext + req.query.date.substring(4, 8)
                     }
-                    res.send(data)
+                    res.json(data)
                 } else {
                     var date = new Date(parseInt(req.query.date.substr(4, 4))-543, parseInt(req.query.date.substr(2, 2))-1, parseInt(req.query.date.substr(0, 2))+1);
                     var thatdate = new Date(2010, 02-1, 16+1);
