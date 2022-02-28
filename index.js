@@ -5,6 +5,8 @@ const index = require("./api/index");
 const index2 = require("./api/index2");
 const all = require("./api/all");
 
+process.env.TZ = 'Asia/Bangkok'
+
 app.use(express.json({ extended: false }));
 
 app.use("/api/", all);
