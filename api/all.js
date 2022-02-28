@@ -1078,10 +1078,12 @@ router.get('/lotnews', async (req, res) => {
         const link = news[i].url
         const description = news[i].post_content
         const pubDate = news[i].created_at
+        //create new description variable with remove html tag
+        let description2 = description.replace(/<(?:.|\n)*?>/gm, '')
         const json = {
             title: title,
             link: link.replace(/\n|\t/g, ''),
-            description: description.substring(0, 100) + '...',
+            description: description2.substring(0, 100) + '...',
             pubDate: pubDate,
         }
         array.push(json)
