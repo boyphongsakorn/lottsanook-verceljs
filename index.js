@@ -10,6 +10,7 @@ process.env.TZ = 'Asia/Bangkok'
 app.use(express.json({ extended: false }));
 
 app.use("/api/", all);
+app.use("/", all);
 /*app.use("/api/", index);
 app.use("/api/index2", index2);
 
