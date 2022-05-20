@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const product = require("./api/product");
-const index = require("./api/index");
-const index2 = require("./api/index2");
+//const product = require("./api/product");
+//const index = require("./api/index");
+//const index2 = require("./api/index2");
 const all = require("./api/all");
 
 process.env.TZ = 'Asia/Bangkok'
