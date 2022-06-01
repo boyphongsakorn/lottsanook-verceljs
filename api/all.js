@@ -125,9 +125,9 @@ router.get('/', (req, res) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.send(data)
                 } else {
-                    var date = new Date(parseInt(req.query.date.substr(4, 4))-543, parseInt(req.query.date.substr(2, 2))-1, parseInt(req.query.date.substr(0, 2))+1);
-                    var thatdate = new Date(2010, 02-1, 16+1);
-                    if(date.getTime() === thatdate.getTime() || date < thatdate) {
+                    var date = new Date(parseInt(req.query.date.substr(4, 4)) - 543, parseInt(req.query.date.substr(2, 2)) - 1, parseInt(req.query.date.substr(0, 2)) + 1);
+                    var thatdate = new Date(2010, 02 - 1, 16 + 1);
+                    if (date.getTime() === thatdate.getTime() || date < thatdate) {
                         if (req.query.from !== undefined) {
                             fetch('https://lottsanook-verceljs.vercel.app/api/index2?date=' + req.query.date + '&from')
                                 .then(res => res.json())
@@ -141,7 +141,7 @@ router.get('/', (req, res) => {
                                     res.send(body)
                                 })
                         }
-                    }else{
+                    } else {
                         let data = [["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0], ["\u0e40\u0e25\u0e02\u0e2b\u0e19\u0e49\u0e323\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e223\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e222\u0e15\u0e31\u0e27", 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e02\u0e49\u0e32\u0e07\u0e40\u0e04\u0e35\u0e22\u0e07\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e482", 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e483", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e484", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e485", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
                         res.send(data)
                     }
@@ -579,10 +579,32 @@ router.get('/index3', async (req, res) => {
                         }
                     }
                 }
-                if ($('div').toArray()[2].firstChild.data.match('~[0-9]+~')) {
-                    fs.writeFile('/tmp/' + req.query.date + '.txt', JSON.stringify(data), function (err) {
-                        if (err) throw err;
-                        //console.log('Saved!');
+                try {
+                    if ($('div').toArray()[2].firstChild.data.match('~[0-9]+~')) {
+                        fs.writeFile('/tmp/' + req.query.date + '.txt', JSON.stringify(data), function (err) {
+                            if (err) throw err;
+                            //console.log('Saved!');
+                            if (req.query.from !== undefined) {
+                                switch (req.query.date.substr(2, 2)) {
+                                    case '01': monthtext = "มกราคม"; break;
+                                    case '02': monthtext = "กุมภาพันธ์"; break;
+                                    case '03': monthtext = "มีนาคม"; break;
+                                    case '04': monthtext = "เมษายน"; break;
+                                    case '05': monthtext = "พฤษภาคม"; break;
+                                    case '06': monthtext = "มิถุนายน"; break;
+                                    case '07': monthtext = "กรกฎาคม"; break;
+                                    case '08': monthtext = "สิงหาคม"; break;
+                                    case '09': monthtext = "กันยายน"; break;
+                                    case '10': monthtext = "ตุลาคม"; break;
+                                    case '11': monthtext = "พฤศจิกายน"; break;
+                                    case '12': monthtext = "ธันวาคม"; break;
+                                }
+
+                                data[0][0] = req.query.date.substring(0, 2) + monthtext + req.query.date.substring(4, 8)
+                            }
+                            res.send(data)
+                        });
+                    } else {
                         if (req.query.from !== undefined) {
                             switch (req.query.date.substr(2, 2)) {
                                 case '01': monthtext = "มกราคม"; break;
@@ -602,8 +624,8 @@ router.get('/index3', async (req, res) => {
                             data[0][0] = req.query.date.substring(0, 2) + monthtext + req.query.date.substring(4, 8)
                         }
                         res.send(data)
-                    });
-                } else {
+                    }
+                } catch (error) {
                     if (req.query.from !== undefined) {
                         switch (req.query.date.substr(2, 2)) {
                             case '01': monthtext = "มกราคม"; break;
@@ -624,6 +646,7 @@ router.get('/index3', async (req, res) => {
                     }
                     res.send(data)
                 }
+
             })
             .catch((err) => {
                 let data = [["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0], ["\u0e40\u0e25\u0e02\u0e2b\u0e19\u0e49\u0e323\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e223\u0e15\u0e31\u0e27", 0, 0], ["\u0e40\u0e25\u0e02\u0e17\u0e49\u0e32\u0e222\u0e15\u0e31\u0e27", 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e02\u0e49\u0e32\u0e07\u0e40\u0e04\u0e35\u0e22\u0e07\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e481", 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e482", 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e483", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e484", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], ["\u0e23\u0e32\u0e07\u0e27\u0e31\u0e25\u0e17\u0e35\u0e485", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
@@ -1059,23 +1082,23 @@ router.get('/lotnews', async (req, res) => {
         /*const date = pubDate.slice(0, 10)
         const time = pubDate.slice(11, 19)
         const dateTime = date + ' ' + time*/
-        /*const json = {
-            title: title,
-            //remove \n and \t in string
-            link: link.replace(/\n|\t/g, ''),
-            description: description.substring(0, 100) + '...',
-            image: image,
-            pubDate: pubDate,
-        }
-        array.push(json)
-    }*/
+    /*const json = {
+        title: title,
+        //remove \n and \t in string
+        link: link.replace(/\n|\t/g, ''),
+        description: description.substring(0, 100) + '...',
+        image: image,
+        pubDate: pubDate,
+    }
+    array.push(json)
+}*/
 
-    response = await fetch('https://www.khaosod.co.th/get_menu?slug=lottery&offset=0&limit='+arrayofnews[1])
+    response = await fetch('https://www.khaosod.co.th/get_menu?slug=lottery&offset=0&limit=' + arrayofnews[1])
     xml = await response.json()
     news = xml._posts
-    for(let i = 0; i < news.length; i++){
+    for (let i = 0; i < news.length; i++) {
         const title = news[i].post_title
-        const link = 'https://www.khaosod.co.th/lottery/news_'+news[i].ID
+        const link = 'https://www.khaosod.co.th/lottery/news_' + news[i].ID
         const description = news[i].post_content
         const pubDate = news[i].created_at
         // image
