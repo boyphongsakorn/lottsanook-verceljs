@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "index.js": {
-      "memory": 1000,
+      "memory": 960,
       "maxDuration": 10
     }
   },
