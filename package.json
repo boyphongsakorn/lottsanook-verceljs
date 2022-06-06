@@ -27,6 +27,6 @@
     "follow-redirects": "^1.14.3"
   },
   "devDependencies": {
-    "@vercel/node": "^1.8.5",
+    "@vercel/node": "^1.8.5"
   }
 }
