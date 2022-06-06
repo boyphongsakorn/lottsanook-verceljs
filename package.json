@@ -25,5 +25,8 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
     "follow-redirects": "^1.14.3"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.8.5",
   }
 }
