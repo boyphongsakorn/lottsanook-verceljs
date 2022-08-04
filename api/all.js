@@ -1028,7 +1028,7 @@ router.get('/finddol', async (req, res) => {
 router.get('/lotnews', async (req, res) => {
     let arrayofnews = [0, 0, 0]
     let check = req.query.count % 3
-    let fulldesc = request.query.fulldesc || 'false'
+    let fulldesc = req.query.fulldesc || 'false'
     if (check != 0) {
         if (check == 1) {
             //ceil number
