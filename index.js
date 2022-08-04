@@ -13,7 +13,6 @@ app.use("/api/", all);
 app.use("/", all);
 /*app.use("/api/", index);
 app.use("/api/index2", index2);
-
 app.use("/api/product", product);*/
 
 const PORT = process.env.PORT || 8080;
