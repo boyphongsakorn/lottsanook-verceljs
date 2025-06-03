@@ -1049,7 +1049,8 @@ router.get('/lotnews', async (req, res) => {
         arrayofnews[2] = req.query.count / 3
     }
     let array = [];
-    let response = await fetch('https://www.brighttv.co.th/tag/%e0%b9%80%e0%b8%a5%e0%b8%82%e0%b9%80%e0%b8%94%e0%b9%87%e0%b8%94/feed')
+    // let response = await fetch('https://www.brighttv.co.th/tag/%e0%b9%80%e0%b8%a5%e0%b8%82%e0%b9%80%e0%b8%94%e0%b9%87%e0%b8%94/feed')
+    let response = await fetch('https://rss.app/feeds/n8o2TN8xZ6KSQx0r.xml')
     let xml = await response.text()
     let $ = cheerio.load(xml)
     let news = $('item')
@@ -1134,7 +1135,8 @@ router.get('/lotnews', async (req, res) => {
         array.push(json)
     }
 
-    response = await fetch('https://www.brighttv.co.th/tag/%E0%B8%AB%E0%B8%A7%E0%B8%A2%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87/feed')
+    // response = await fetch('https://www.brighttv.co.th/tag/%E0%B8%AB%E0%B8%A7%E0%B8%A2%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87/feed')
+    response = await fetch('https://rss.app/feeds/JsQQE1zMZ42vDpcx.xml')
     xml = await response.text()
     $ = cheerio.load(xml)
     news = $('item')
