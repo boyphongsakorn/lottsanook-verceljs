@@ -814,7 +814,7 @@ router.get('/gdpy', async (req, res) => {
                     if (val.firstChild.data.indexOf("ตรวจสลากกินแบ่งรัฐบาล") > -1) {
                         let day = val.firstChild.data.split(" ").splice(2)
                         let monthnum
-                        switch (day[2]) {
+                        switch (day[1]) {
                             case 'มกราคม': monthnum = "01"; break;
                             case 'กุมภาพันธ์': monthnum = "02"; break;
                             case 'มีนาคม': monthnum = "03"; break;
@@ -828,7 +828,7 @@ router.get('/gdpy', async (req, res) => {
                             case 'พฤศจิกายน': monthnum = "11"; break;
                             case 'ธันวาคม': monthnum = "12"; break;
                         }
-                        peryear.unshift(padLeadingZeros(day[0], 2) + monthnum + day[3])
+                        peryear.unshift(padLeadingZeros(day[0], 2) + monthnum + day[2])
                     }
                 }
                 for (const val of peryear) {
