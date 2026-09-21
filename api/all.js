@@ -803,9 +803,9 @@ router.get('/gdpy', async (req, res) => {
     } catch (err) {
 
     }
-    if (fileContents) {
-        res.send(JSON.parse(fileContents));
-    } else {
+    // if (fileContents) {
+    //     res.send(JSON.parse(fileContents));
+    // } else {
         fetch('https://myhora.com/lottery/result-' + req.query.year + '.aspx')
             .then(res => res.text())
             .then((body) => {
@@ -839,7 +839,7 @@ router.get('/gdpy', async (req, res) => {
                     res.send(yearlist)
                 });
             })
-    }
+    // }
 })
 
 router.get('/checklottery', async (req, res) => {
