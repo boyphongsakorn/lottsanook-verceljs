@@ -806,7 +806,7 @@ router.get('/gdpy', async (req, res) => {
     if (fileContents) {
         res.send(JSON.parse(fileContents));
     } else {
-        fetch('https://www.myhora.com/%E0%B8%AB%E0%B8%A7%E0%B8%A2/%E0%B8%9B%E0%B8%B5-' + req.query.year + '.aspx')
+        fetch('https://myhora.com/lottery/result-' + req.query.year + '.aspx')
             .then(res => res.text())
             .then((body) => {
                 var $ = cheerio.load(body);
