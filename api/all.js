@@ -791,6 +791,7 @@ router.get('/god', async (req, res) => {
 })
 
 router.get('/gdpy', async (req, res) => {
+    /*
     let peryear = []
     let yearlist = []
     var fileContents = null;
@@ -840,6 +841,28 @@ router.get('/gdpy', async (req, res) => {
                 });
             })
     // }
+    */
+    let yearlist = []
+    try {
+        if (req.query.year == new Date().getFullYear() + 543) {
+            fs.unlinkSync('/tmp/' + req.query.year + '.txt');
+            console.log('yes this year')
+        }
+    } catch (err) {
+    }
+
+    fetch('https://raw.githubusercontent.com/boyphongsakorn/testrepo/refs/heads/main/god')
+        .then(res => res.json())
+        .then((body) => {
+            yearlist = body.filter(date => date.substring(4, 8) === req.query.year);
+            fs.writeFile('/tmp/' + req.query.year + '.txt', JSON.stringify(yearlist), function (err) {
+                if (err) throw err;
+                res.send(yearlist)
+            });
+        })
+        .catch(err => {
+            res.status(500).send({ error: err.message });
+        });
 })
 
 router.get('/checklottery', async (req, res) => {
